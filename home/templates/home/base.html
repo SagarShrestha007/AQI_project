@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AQIntelX{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+</head>
+<body>
+
+    <!-- Navigation/Header -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="{% static 'home/logo.png' %}" alt="AQIntelX Logo">
+            <span>AQ–IntelX</span>
+        </div>
+        <nav>
+              <ul class="nav-links">
+                <li><a href="{% url 'home:index' %}">Home</a></li>
+                <li><a href="{% url 'home:blog' %}">Blog</a></li>
+                <li><a href="{% url 'home:about' %}">About</a></li>
+                <li><a href="{% url 'home:contact' %}">Contact</a></li>
+                <li><a href="{% url 'home:predict_aqi' %}">Predict AQI</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Block -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 AQIntelX. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

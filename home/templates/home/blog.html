@@ -1,0 +1,40 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block title %}Blog - AQIntelX{% endblock %}
+
+{% block content %}
+<section style="max-width: 900px; margin: 0 auto; padding: 1rem;">
+  <h2 style="text-align: center; font-size: 2rem; margin-bottom: 0.5rem; color: #2c3e50;">
+    Our Blog
+  </h2>
+  <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+    Explore articles and updates about air quality, health, and the technology behind AQIntelX.
+  </p>
+
+  <article style="margin-bottom: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem;">
+    <h3 style="color: #34495e;">Understanding AQI: What the Numbers Really Mean</h3>
+    <p style="line-height: 1.6; text-align: justify;">
+      The Air Quality Index (AQI) helps you understand how polluted the air is and how it can affect your health. In this article, we explain how AQI is calculated, the main pollutants involved, and what steps you can take to stay safe during poor air quality days.
+    </p>
+  </article>
+
+  <article style="margin-bottom: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem;">
+    <h3 style="color: #34495e;">How Machine Learning Helps Predict Air Quality</h3>
+    <p style="line-height: 1.6; text-align: justify;">
+      Learn how AQIntelX uses advanced machine learning models like CatBoost to forecast AQI levels based on real-time and historical data from sensors and public APIs. We also discuss the challenges and advantages of applying AI in environmental monitoring.
+    </p>
+  </article>
+
+  <article style="margin-bottom: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem;">
+    <h3 style="color: #34495e;">Simple Steps to Protect Yourself from Air Pollution</h3>
+    <p style="line-height: 1.6; text-align: justify;">
+      Poor air quality can impact your health in subtle and serious ways. This post shares practical tips — like using masks, staying indoors on high-AQI days, and improving indoor air quality — to help you breathe cleaner air and reduce exposure.
+    </p>
+  </article>
+
+  <p style="text-align: center; font-style: italic; color: #7f8c8d;">
+    Stay tuned — more articles coming soon!
+  </p>
+</section>
+{% endblock %}

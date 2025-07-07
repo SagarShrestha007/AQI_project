@@ -1,0 +1,64 @@
+{% extends 'home/base.html' %}
+
+{% block title %}About - AQIntelX{% endblock %}
+
+{% block content %}
+<section style="max-width: 800px; margin: 0 auto; padding: 1rem;">
+  <h2 style="text-align: center; font-size: 2rem; margin-bottom: 1rem; color: #2c3e50;">
+    About AQIntelX
+  </h2>
+
+  <p style="font-size: 1.1rem; line-height: 1.6; text-align: justify;">
+    <strong>AQIntelX</strong> stands for <strong>Air Quality Intelligence eXperience</strong>.
+    It is a final-year project that integrates real-time air quality monitoring, machine learning-based prediction models, 
+    and a user-friendly web interface to deliver accurate and actionable insights about air pollution.
+  </p>
+
+  <h3 style="margin-top: 1.5rem; color: #34495e;">Data Source</h3>
+  <p style="line-height: 1.6; text-align: justify;">
+    The system uses hardware sensors that continuously measure key environmental parameters, including 
+    <strong>PM2.5</strong>, <strong>PM10</strong>, <strong>pressure</strong>, <strong>carbon monoxide (CO)</strong>, 
+    <strong>temperature</strong>, and <strong>humidity</strong>. This data is uploaded in real time to cloud storage and 
+    accessed by the system to ensure up-to-date readings.
+  </p>
+  <p style="line-height: 1.6; text-align: justify;">
+    The collected data is used to compute the current Air Quality Index (AQI), with a focus on PM2.5 and PM10, 
+    which are the most significant pollutants affecting air quality.
+  </p>
+
+  <h3 style="margin-top: 1.5rem; color: #34495e;">Machine Learning Models</h3>
+  <p style="line-height: 1.6; text-align: justify;">
+    AQIntelX utilizes two CatBoost regression models, each trained for a specific location: <strong>Kathmandu</strong> 
+    and <strong>Changunarayan</strong>. When users select a location, the corresponding model predicts the AQI for that area.
+  </p>
+  <p style="line-height: 1.6; text-align: justify;">
+    For model training, historical air quality and weather data were gathered from three APIs: 
+    <strong>PurpleAir</strong>, <strong>OpenAQ</strong>, and <strong>OpenWeather</strong>. These diverse datasets provided 
+    a strong foundation to train and validate the models effectively.
+  </p>
+  <p style="line-height: 1.6; text-align: justify;">
+    Predictions are presented through interactive graphs and clear explanations, making the information accessible and easy to interpret.
+  </p>
+
+  <h3 style="margin-top: 1.5rem; color: #34495e;">Additional Insights</h3>
+  <p style="line-height: 1.6; text-align: justify;">
+    Although multiple environmental parameters are measured, AQI calculations and predictions emphasize PM2.5 and PM10 
+    due to their significant health impacts.
+  </p>
+  <p style="line-height: 1.6; text-align: justify;">
+    The website also includes educational content that explains how each parameter relates to air quality and health, 
+    helping users understand the importance of these readings.
+  </p>
+
+  <h3 style="margin-top: 1.5rem; color: #34495e;">Web Interface</h3>
+  <p style="line-height: 1.6; text-align: justify;">
+    The AQIntelX web application was <strong>designed in Figma</strong> and <strong>developed using Django</strong>. 
+    It features a clean and intuitive interface where users can select their location, view live sensor data, 
+    explore AQI forecasts, and gain meaningful insights — all in one place.
+  </p>
+  <p style="line-height: 1.6; text-align: justify;">
+    This project helps people make more informed, healthier decisions by providing reliable, easy-to-understand 
+    information about the air they breathe.
+  </p>
+</section>
+{% endblock %}

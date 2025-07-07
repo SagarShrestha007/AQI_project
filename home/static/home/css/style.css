@@ -1,0 +1,458 @@
+/* ======== IMPORT FONTS ======== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@400;500;700&display=swap');
+
+/* ======== ROOT COLORS & VARIABLES ======== */
+:root {
+  --primary-color: #00A896;
+  --secondary-color: #05668D;
+  --accent-color: #02C39A;
+  --background-color: #f7f7f7;
+  --text-color: #333;
+  --heading-color: #111;
+  --footer-bg: #202020;
+  --white: #fff;
+  --circle-x: 237px;
+  --circle-y: 130px;
+  --circle-width: 572.35px;
+  --circle-height: 557px;
+  --circle-color: #BEE9E8;
+}
+
+/* ======== RESET & GLOBAL ======== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* ======== NAVBAR ======== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 32px;
+  background-color: var(--white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: 69px;
+  max-width: 100%;
+  width: 1530px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 20px;
+  color: #222;
+  margin: 10px 0 10px 32px;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.logo span {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #222;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 8px 12px;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: var(--accent-color);
+}
+
+/* ======== HERO SECTION ======== */
+.hero {
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  color: var(--text-color);
+}
+
+.hero-circle {
+  position: absolute;
+  width: var(--circle-width);
+  height: var(--circle-height);
+  background-color: var(--circle-color);
+  border-radius: 50%;
+  top: var(--circle-y);
+  left: var(--circle-x);
+  transform: translate(-50%, -50%);
+  filter: blur(300px);
+  z-index: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  color: black;
+}
+
+.hero-inner h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.hero-inner p {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+/* ======== LAYOUT & SECTIONS ======== */
+section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--heading-color);
+}
+
+section p,
+.limited-paragraph {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-color);
+  max-width: 1170px;
+  margin: 0 auto 15px;
+  line-height: 1.5;
+}
+
+/* ======== BUTTONS ======== */
+.learn-more-btn {
+  display: block;
+  width: 148px;
+  height: 51px;
+  background-color: #62B6CB;
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 51px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 15px auto 0;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.learn-more-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+/* ======== AQI Dashboard ======== */
+.aqi-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  color: var(--heading-color);
+  font-family: 'Playfair Display', serif;
+}
+
+.section-subtitle {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #555;
+  font-family: 'Playfair Display', serif;
+}
+
+.error-msg {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* ======== SUMMARY CARDS ======== */
+.summary-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  min-width: 150px;
+}
+
+.summary-card h4 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.summary-card .big {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.summary-card.aqi-card {
+  background-color: #e0f7fa;
+  color: #004d40;
+  min-width: 220px;
+}
+
+.summary-card.aqi-card h4 {
+  color: #00796b;
+}
+
+.summary-card.pollutant-card {
+  background-color: rgb(252, 228, 236);
+  color: #333;
+  min-width: 220px;
+}
+
+.summary-card.health-card {
+  background-color: rgb(255, 243, 224);
+  color: #333;
+  min-width: 320px;
+  width: 100%;
+  max-width: 420px;
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* ======== SENSOR CARDS ======== */
+.sensor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 700px;
+  margin: 2rem auto 0;
+}
+
+.sensor-card {
+  background: var(--white);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.sensor-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.sensor-card .value {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.sensor-card.soft-red { background-color: #ffe6e6; }
+.sensor-card.soft-orange { background-color: #fff4e6; }
+.sensor-card.soft-blue { background-color: #e6f7ff; }
+.sensor-card.soft-teal { background-color: #e6fff7; }
+.sensor-card.soft-purple { background-color: #f4e6ff; }
+.sensor-card.soft-gold { background-color: #fff9e6; }
+
+.value.red { color: #e63946; }
+.value.orange { color: #f77f00; }
+.value.blue { color: #0077b6; }
+.value.teal { color: #2a9d8f; }
+.value.purple { color: #7209b7; }
+.value.gold { color: #d4a017; }
+
+/* ======== INSIGHTS, MODEL, CHART ======== */
+.insight-box {
+  margin-top: 2rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  color: #555;
+}
+
+.insight-box h3 {
+  font-family: 'Playfair Display', serif;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.model-select {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.model-select label {
+  font-weight: bold;
+}
+
+.model-select select {
+  padding: 0.4rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-left: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.chart-box {
+  margin-top: 3rem;
+  max-width: 800px;
+  padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+.chart-box h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  color: #333;
+  font-family: 'Playfair Display', serif;
+}
+
+.aqi-interpretation {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #444;
+}
+
+.legend {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.legend span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 6px;
+  border-radius: 2px;
+}
+
+/* ======== FOOTER ======== */
+footer, footer.footer {
+  background-color: var(--footer-bg);
+  color: var(--white);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  margin-top: 60px;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+  .sensor-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .sensor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-inner h1 {
+    font-size: 36px;
+  }
+
+  .hero-inner p {
+    font-size: 18px;
+  }
+
+  section p,
+  .limited-paragraph {
+    max-width: 90%;
+    margin: 0 auto 15px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* 🎯 Current AQI Card */
+.summary-card.aqi-card {
+  background-color: #e0f7fa;
+  color: #004d40; /* Default text color */
+}
+
+.summary-card.aqi-card h4 {
+  color: #00796b; /* Label text */
+}
+
+.summary-card.aqi-card .big {
+  color: #004d40; /* AQI number */
+}
+
+/* 🎯 Main Pollutant Card */
+.summary-card.pollutant-card {
+  background-color: rgb(252, 228, 236);
+  color: #333 !important; /* Label + value */
+}
+
+.summary-card.pollutant-card h4,
+.summary-card.pollutant-card .big {
+  color: #333 !important;
+}
+
+/* 🎯 Health Recommendation Card */
+.summary-card.health-card {
+  background-color: rgb(255, 243, 224);
+  color: #333 !important;
+}
+
+.summary-card.health-card h4,
+.summary-card.health-card p,
+.summary-card.health-card span {
+  color: #333 !important;
+}

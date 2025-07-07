@@ -1,0 +1,32 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block title %}Home - AQIntelX{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-circle"></div>
+    <div class="hero-inner">
+        <h1>Breathe Smart with AQ-IntelX</h1>
+        <p>Monitor, Predict, and Prevent Exposure to Bad Air.</p>
+    </div>
+</section>
+
+<section>
+  <p class="limited-paragraph">
+    AQIntelX helps you understand the air around you. We track real-time pollution levels and give simple, clear insights to help you stay safe. Whether you’re at home or outside, you’ll always know when it’s the right time to go out, open your windows, or take precautions. Breathe better with AQIntelX — it’s air quality made easy.
+  </p>
+  <a href="/about" class="learn-more-btn">Learn More</a>
+</section>
+
+<script>
+  let hasRedirected = false;
+  window.addEventListener('wheel', function(event) {
+    if (hasRedirected) return;
+    if (event.deltaY > 0) {
+      hasRedirected = true;
+      window.location.href = "{% url 'home:predict_aqi' %}";
+    }
+  });
+</script>
+{% endblock %}
