@@ -11,22 +11,21 @@
     <p style="color: red; text-align: center; font-weight: bold; font-size: 1.1rem;">{{ error }}</p>
   {% else %}
 
- <!-- Top Summary Section -->
-<section class="summary-section">
-  <div class="summary-card aqi-card">
-    <h4>Current AQI</h4>
-    <p class="big">{{ current_aqi }}</p>
-  </div>
-  <div class="summary-card pollutant-card">
-    <h4>Main Pollutant</h4>
-    <p class="big">{{ main_pollutant }}</p>
-  </div>
-  <div class="summary-card health-card">
-    <h4>Health Recommendation</h4>
-    <p>{{ health_recommendation }}</p>
-  </div>
-</section>
-
+  <!-- Top Summary Section -->
+  <section class="summary-section">
+    <div class="summary-card aqi-card">
+      <h4>Current AQI</h4>
+      <p class="big">{{ current_aqi }}</p>
+    </div>
+    <div class="summary-card pollutant-card">
+      <h4>Main Pollutant</h4>
+      <p class="big">{{ main_pollutant }}</p>
+    </div>
+    <div class="summary-card health-card">
+      <h4>Health Recommendation</h4>
+      <p>{{ health_recommendation }}</p>
+    </div>
+  </section>
 
   <!-- Latest Sensor Data -->
   <h3 style="text-align: center; margin-bottom: 1rem; color: #555;">📟 Latest Sensor Data</h3>
@@ -34,27 +33,38 @@
     <div class="sensor-card" style="background-color: #ffe6e6;">
       <h3>PM2.5</h3>
       <p class="value red">{{ hardware_data.PM2_5 }} µg/m³</p>
+      <small>Recommended: {{ recommended_levels.PM2_5 }}</small>
     </div>
     <div class="sensor-card" style="background-color: #fff4e6;">
       <h3>PM10</h3>
       <p class="value orange">{{ hardware_data.pm10 }} µg/m³</p>
+      <small>Recommended: {{ recommended_levels.pm10 }}</small>
     </div>
     <div class="sensor-card" style="background-color: #e6f7ff;">
       <h3>Temperature</h3>
       <p class="value blue">{{ hardware_data.temperature }} °C</p>
+      <!-- Removed Recommended line here -->
     </div>
     <div class="sensor-card" style="background-color: #e6fff7;">
       <h3>Humidity</h3>
       <p class="value teal">{{ hardware_data.humidity }} %</p>
+      <!-- Recommended kept as is (none) -->
     </div>
     <div class="sensor-card" style="background-color: #f4e6ff;">
       <h3>Pressure</h3>
       <p class="value purple">{{ hardware_data.pressure }} hPa</p>
+      <!-- Recommended kept as is (none) -->
     </div>
     <div class="sensor-card" style="background-color: #fff9e6;">
       <h3>CO</h3>
       <p class="value gold">{{ hardware_data.co }} ppm</p>
+      <small>Recommended: {{ recommended_levels.co }}</small>
     </div>
+  </div>
+
+  <!-- Data Fetched Timestamp -->
+  <div style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
+    Data fetched at: {{ data_fetched_at }}
   </div>
 
   <!-- Sensor Insights -->
@@ -197,6 +207,14 @@
   .sensor-card .value {
     font-size: 1.3rem;
     font-weight: bold;
+  }
+
+  .sensor-card small {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    color: #666;
+    font-style: italic;
   }
 
   .value.red { color: #e63946; }

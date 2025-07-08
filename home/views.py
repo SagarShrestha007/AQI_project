@@ -187,6 +187,8 @@ def predict_aqi(request):
     df = preprocess_with_time_features(df)
     latest = df.iloc[-1]
 
+    data_fetched_at = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
     feature_cols = [
         'humidity', 'temperature', 'pressure', 'pm2.5_atm', 'pm10.0_atm',
         'hour', 'dayofweek', 'is_weekend',
@@ -200,14 +202,8 @@ def predict_aqi(request):
 
     features = [[float(latest.get(col, 0)) for col in feature_cols]]
 
-    location = request.GET.get('location', 'kathmandu').lower()
-
-    if location == 'kathmandu':
-        model = kathmandu_model
-    elif location == 'changunarayan':
-        model = changunarayan_model
-    else:
-        model = kathmandu_model
+    model_choice = request.GET.get('model_choice', 'kathmandu').lower()
+    model = kathmandu_model if model_choice == 'kathmandu' else changunarayan_model
 
     predicted_aqi = model.predict(features)[0]
 
@@ -232,6 +228,12 @@ def predict_aqi(request):
         "Predicted to remain stable in the next hour."
     )
 
+    recommended_levels = {
+        'PM2_5': '0-12 ug/m³',
+        'pm10': '0-54 ug/m³',
+        'co': '0-4.4 ppm'
+    }
+
     context = {
         'current_aqi': current_aqi,
         'main_pollutant': main_pollutant,
@@ -244,15 +246,16 @@ def predict_aqi(request):
             'pressure': pressure,
             'co': co,
         },
-        'location': location,
+        'location': model_choice,
+        'model_choice': model_choice,
         'future_timestamps': json.dumps(future_timestamps),
         'future_predictions': json.dumps(future_predictions),
         'health_recommendation': get_health_recommendation(current_aqi),
         'trend_text': trend_text,
         'health_next_hour': get_health_recommendation_next_hour(next_hour_aqi),
         'error': None,
+        'data_fetched_at': data_fetched_at,
+        'recommended_levels': recommended_levels,
     }
 
     return render(request, 'home/predict.html', context)
-from django.shortcuts import render
-
