@@ -30,32 +30,29 @@
   <!-- Latest Sensor Data -->
   <h3 style="text-align: center; margin-bottom: 1rem; color: #555;">📟 Latest Sensor Data</h3>
   <div class="sensor-grid">
-    <div class="sensor-card" style="background-color: #ffe6e6;">
+    <div class="sensor-card soft-red">
       <h3>PM2.5</h3>
       <p class="value red">{{ hardware_data.PM2_5 }} µg/m³</p>
       <small>Recommended: {{ recommended_levels.PM2_5 }}</small>
     </div>
-    <div class="sensor-card" style="background-color: #fff4e6;">
+    <div class="sensor-card soft-orange">
       <h3>PM10</h3>
       <p class="value orange">{{ hardware_data.pm10 }} µg/m³</p>
       <small>Recommended: {{ recommended_levels.pm10 }}</small>
     </div>
-    <div class="sensor-card" style="background-color: #e6f7ff;">
+    <div class="sensor-card soft-blue">
       <h3>Temperature</h3>
       <p class="value blue">{{ hardware_data.temperature }} °C</p>
-      <!-- Removed Recommended line here -->
     </div>
-    <div class="sensor-card" style="background-color: #e6fff7;">
+    <div class="sensor-card soft-teal">
       <h3>Humidity</h3>
       <p class="value teal">{{ hardware_data.humidity }} %</p>
-      <!-- Recommended kept as is (none) -->
     </div>
-    <div class="sensor-card" style="background-color: #f4e6ff;">
+    <div class="sensor-card soft-purple">
       <h3>Pressure</h3>
       <p class="value purple">{{ hardware_data.pressure }} hPa</p>
-      <!-- Recommended kept as is (none) -->
     </div>
-    <div class="sensor-card" style="background-color: #fff9e6;">
+    <div class="sensor-card soft-gold">
       <h3>CO</h3>
       <p class="value gold">{{ hardware_data.co }} ppm</p>
       <small>Recommended: {{ recommended_levels.co }}</small>
@@ -68,163 +65,113 @@
   </div>
 
   <!-- Sensor Insights -->
-  <section style="margin-top: 2rem; background: #f9f9f9; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-    <h3 style="margin-bottom: 1rem; color: #444;">💡 Sensor Insights</h3>
-    <ul style="line-height: 1.6; color: #555;">
-      <li><strong>PM2.5 & PM10:</strong> Primary indicators for AQI — fine and coarse particles that pose health risks.</li>
-      <li><strong>Temperature:</strong> Affects chemical reactions and pollutant dispersion — higher temps can worsen ozone levels.</li>
-      <li><strong>Humidity:</strong> High humidity causes particles to clump & settle, slightly influencing sensor readings.</li>
-      <li><strong>Pressure:</strong> High pressure leads to stagnant air and pollutant buildup.</li>
-      <li><strong>CO:</strong> From incomplete combustion — monitored as a secondary AQI factor.</li>
-    </ul>
-  </section>
+<section class="sensor-insights">
+  <h3>💡 Sensor Insights</h3>
+  <ul>
+    <li><span class="icon">🌫️</span><strong>PM2.5 & PM10:</strong> These particles indicate air pollution levels. PM2.5 are fine particles that penetrate deep into lungs, while PM10 are coarser. Both affect respiratory health.</li>
+    <li><span class="icon">🌡️</span><strong>Temperature:</strong> Influences chemical reactions and dispersion of pollutants. Higher temperatures can worsen ozone and smog formation.</li>
+    <li><span class="icon">💧</span><strong>Humidity:</strong> High humidity causes particles to clump and settle faster, which can slightly affect sensor readings and air quality perception.</li>
+    <li><span class="icon">🌬️</span><strong>Pressure:</strong> High pressure often causes stagnant air, leading to pollutant accumulation near the surface.</li>
+    <li><span class="icon">🔥</span><strong>CO (Carbon Monoxide):</strong> Result of incomplete combustion from vehicles and industry. It’s toxic and monitored as a secondary AQI factor.</li>
+  </ul>
+</section>
 
-  <!-- Model Selection -->
-  <section style="margin-top: 2rem; text-align: center;">
-    <form method="get" id="modelForm">
-      <label for="model_choice" style="font-weight: bold;">Select Location Model:</label>
-      <select name="model_choice" id="model_choice" style="padding: 0.4rem; border-radius: 5px; border: 1px solid #ccc; margin-left: 0.5rem;">
-        <option value="kathmandu" {% if model_choice == 'kathmandu' %}selected{% endif %}>Kathmandu</option>
-        <option value="changunarayan" {% if model_choice == 'changunarayan' %}selected{% endif %}>Changunarayan</option>
-      </select>
-    </form>
-  </section>
+ <!-- Model Selection -->
+<section style="margin-top: 2rem; text-align: center;">
+  <form method="get" id="modelForm" style="display: inline-flex; align-items: center; gap: 0.75rem; background: #f7f9fc; padding: 0.6rem 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <label for="model_choice" style="font-weight: 600; font-size: 1rem; color: #333;">Select Location Model:</label>
+    <select name="model_choice" id="model_choice" style="
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      border: 1.8px solid #ccc;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #333;
+      background-color: white;
+      cursor: pointer;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    " 
+    onfocus="this.style.borderColor='#4a90e2'; this.style.boxShadow='0 0 6px #4a90e2';" 
+    onblur="this.style.borderColor='#ccc'; this.style.boxShadow='none';"
+    >
+      <option value="kathmandu" {% if model_choice == 'kathmandu' %}selected{% endif %}>Kathmandu</option>
+      <option value="changunarayan" {% if model_choice == 'changunarayan' %}selected{% endif %}>Changunarayan</option>
+    </select>
+  </form>
+</section>
 
-  <!-- AQI Prediction Chart -->
-  <section id="aqiChartContainer" style="margin-top: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; padding: 1rem; border-radius: 8px; background-color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.07);">
-    <h2 style="text-align: center; margin-bottom: 1rem; color: #333;">📈 Future AQI Prediction (Next 24 Hours)</h2>
-    <canvas id="aqiChart" style="display: block; margin: 0 auto; max-width: 100%; height: 300px;"></canvas>
+<!-- AQI Prediction Chart -->
+<section id="aqiChartContainer" style="margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 1rem; border-radius: 8px; background-color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.07);">
+  <h2 style="text-align: center; margin-bottom: 1rem; color: #333;">📈 Future AQI Prediction (Next 24 Hours)</h2>
+  <canvas id="aqiChart" style="display: block; margin: 0 auto; max-width: 100%; height: 450px;"></canvas>
 
-    <div class="aqi-interpretation" style="margin-top: 1rem; text-align: center; font-size: 1rem; color: #444;">
-      <strong>Trend:</strong> {{ trend_text }}<br>
-      <strong>Next Hour Recommendation:</strong> {{ health_next_hour }}
-    </div>
+  <div class="aqi-interpretation" style="margin-top: 1rem; text-align: center; font-size: 1rem; color: #444;">
+    <strong>Trend:</strong> {{ trend_text }}<br>
+    <strong>Next Hour Recommendation:</strong> {{ health_next_hour }}
+  </div>
 
-    <div style="margin-top: 1rem; text-align: center; font-size: 0.9rem; color: #555;">
-      <span style="display: inline-block; width: 12px; height: 12px; background: #2ecc71;"></span> Good (0–50)
-      <span style="display: inline-block; width: 12px; height: 12px; background: #f1c40f; margin-left: 10px;"></span> Moderate (51–100)
-      <span style="display: inline-block; width: 12px; height: 12px; background: #e67e22; margin-left: 10px;"></span> Sensitive (101–150)
-      <span style="display: inline-block; width: 12px; height: 12px; background: #e74c3c; margin-left: 10px;"></span> Unhealthy (151–200)
-      <span style="display: inline-block; width: 12px; height: 12px; background: #8e44ad; margin-left: 10px;"></span> Very Unhealthy (201–300)
-      <span style="display: inline-block; width: 12px; height: 12px; background: #7f3f00; margin-left: 10px;"></span> Hazardous (301–500)
-    </div>
-  </section>
+  <div style="margin-top: 1rem; text-align: center; font-size: 0.9rem; color: #555;">
+    <span style="display: inline-block; width: 12px; height: 12px; background: #2ecc71;"></span> Good (0–50)
+    <span style="display: inline-block; width: 12px; height: 12px; background: #f1c40f; margin-left: 10px;"></span> Moderate (51–100)
+    <span style="display: inline-block; width: 12px; height: 12px; background: #e67e22; margin-left: 10px;"></span> Sensitive (101–150)
+    <span style="display: inline-block; width: 12px; height: 12px; background: #e74c3c; margin-left: 10px;"></span> Unhealthy (151–200)
+    <span style="display: inline-block; width: 12px; height: 12px; background: #8e44ad; margin-left: 10px;"></span> Very Unhealthy (201–300)
+    <span style="display: inline-block; width: 12px; height: 12px; background: #7f3f00; margin-left: 10px;"></span> Hazardous (301–500)
+  </div>
+</section>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-  document.getElementById("model_choice").addEventListener("change", function () {
-    document.getElementById("modelForm").submit();
-  });
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.getElementById("model_choice").addEventListener("change", function () {
+  document.getElementById("modelForm").submit();
+});
 
-  const ctx = document.getElementById('aqiChart').getContext('2d');
-  const timestamps = JSON.parse('{{ future_timestamps|escapejs }}');
-  const predictions = JSON.parse('{{ future_predictions|escapejs }}');
+const ctx = document.getElementById('aqiChart').getContext('2d');
+const timestamps = JSON.parse('{{ future_timestamps|escapejs }}');
+const predictions = JSON.parse('{{ future_predictions|escapejs }}');
 
-  const barColors = predictions.map(aqi => {
-    if (aqi <= 50) return '#2ecc71';
-    if (aqi <= 100) return '#f1c40f';
-    if (aqi <= 150) return '#e67e22';
-    if (aqi <= 200) return '#e74c3c';
-    if (aqi <= 300) return '#8e44ad';
-    return '#7f3f00';
-  });
+const barColors = predictions.map(aqi => {
+  if (aqi <= 50) return '#2ecc71';
+  if (aqi <= 100) return '#f1c40f';
+  if (aqi <= 150) return '#e67e22';
+  if (aqi <= 200) return '#e74c3c';
+  if (aqi <= 300) return '#8e44ad';
+  return '#7f3f00';
+});
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: timestamps,
-      datasets: [{
-        label: 'Predicted AQI',
-        data: predictions,
-        backgroundColor: barColors,
-        borderRadius: 5
-      }]
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: timestamps,
+    datasets: [{
+      label: 'Predicted AQI',
+      data: predictions,
+      backgroundColor: barColors,
+      borderRadius: 5
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: {
+        min: 0,
+        max: 500,
+        title: { display: true, text: 'AQI' },
+        ticks: { stepSize: 50 }
+      },
+      x: {
+        title: { display: true, text: 'Time (Hourly)' }
+      }
     },
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          min: 0,
-          max: 500,
-          title: { display: true, text: 'AQI' },
-          ticks: { stepSize: 50 }
-        },
-        x: {
-          title: { display: true, text: 'Time (Hourly)' }
-        }
-      },
-      plugins: {
-        legend: { display: false },
-        tooltip: { mode: 'index', intersect: false }
-      },
-      interaction: { mode: 'nearest', axis: 'x', intersect: false }
-    }
-  });
-  </script>
-
-  <style>
-  .summary-card {
-    flex: 1;
-    min-width: 150px;
-    padding: 1rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    plugins: {
+      legend: { display: false },
+      tooltip: { mode: 'index', intersect: false }
+    },
+    interaction: { mode: 'nearest', axis: 'x', intersect: false }
   }
+});
+</script>
 
-  .summary-card h4 {
-    font-size: 1rem;
-    color: #fff;
-    margin-bottom: 0.3rem;
-  }
-
-  .summary-card .big {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #fff;
-  }
-
-  .sensor-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .sensor-card {
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 6px;
-    text-align: center;
-  }
-
-  .sensor-card h3 {
-    font-size: 1rem;
-    margin-bottom: 0.3rem;
-    color: #555;
-  }
-
-  .sensor-card .value {
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
-
-  .sensor-card small {
-    display: block;
-    margin-top: 0.3rem;
-    font-size: 0.8rem;
-    color: #666;
-    font-style: italic;
-  }
-
-  .value.red { color: #e63946; }
-  .value.orange { color: #f77f00; }
-  .value.blue { color: #0077b6; }
-  .value.teal { color: #2a9d8f; }
-  .value.purple { color: #7209b7; }
-  .value.gold { color: #d4a017; }
-  </style>
-
-  {% endif %}
+{% endif %}
 </div>
 {% endblock %}
